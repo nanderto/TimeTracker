@@ -1,0 +1,65 @@
+﻿@page "/"
+@using TimeTracker.Shared
+@using Microsoft.Coyote.Actors
+@inject HttpClient Http
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<h3>
+    @Connected
+    <br />
+    @ErrorCode @Message
+
+</h3>
+@code {
+
+    private bool Connected = false;
+    private string Message = "Thumbs Up";
+    private int ErrorCode = 0;
+    private IActorRuntime runtime;
+    private ActorId StartUpActorId;
+
+    [Inject] CoyoteRuntime CoyoteRT { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        runtime = CoyoteRT.Runtime;
+        this.StartUpActorId = runtime.CreateActor(typeof(StartUpActor));
+        Console.WriteLine($"Got here OnInitializedAsync {StartUpActorId.ToString()} ZZZZZZZ");
+
+        runtime.SendEvent(this.StartUpActorId, new StartupEvent(this.StartUpActorId, runtime.CreateActor(typeof(StartUpActor))));
+
+        Console.WriteLine($"Got here OnInitializedAsync Staartup event has been sent");
+
+        try
+        {
+            var connectedOK = await Http.GetJsonAsync<OK>("api/Ping");
+            Console.WriteLine($"Got here Exiting OnInitializedAsync Pinged API");
+            if (connectedOK.OKProperty == "OK")
+            {
+                Console.WriteLine($"Got here Exiting Pinged returned OK");
+                Connected = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Connected = false;
+            Message = ex.Message;
+            ErrorCode = ex.HResult;
+            Console.WriteLine($"Got here Exiting OnInitializedAsync Exception: {Connected}, {Message}, {ErrorCode}");
+        }
+
+        Console.WriteLine($"Got here Exiting OnInitializedAsync");
+    }
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+
+    }
+}
+
