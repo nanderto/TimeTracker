@@ -36,4 +36,7 @@ namespace TimeTracker.Client
 
         public RegisterClientEvent(ActorId caller) { this.Caller = caller; }
     }
+
+    internal class TimerElapsedEvent : Event
+    {}
 }
