@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30001.183
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Server", "TimeTracker\Server\TimeTracker.Server.csproj", "{4A8769B8-0282-45B9-BB54-3AA8FEBCEBC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Server", "TimeTracker\Server\TimeTracker.Server.csproj", "{4A8769B8-0282-45B9-BB54-3AA8FEBCEBC1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Client", "TimeTracker\Client\TimeTracker.Client.csproj", "{01CF637C-7CD9-49F5-BD21-BDFA031BC2C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Client", "TimeTracker\Client\TimeTracker.Client.csproj", "{01CF637C-7CD9-49F5-BD21-BDFA031BC2C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Shared", "TimeTracker\Shared\TimeTracker.Shared.csproj", "{16BDA711-56D7-4CA2-8E8D-7EF22D0177F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coyote.Commands", "Coyote.Commands\Coyote.Commands.csproj", "{FCAB593C-26A2-47A8-B063-CB844924EBA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Shared", "TimeTracker\Shared\TimeTracker.Shared.csproj", "{16BDA711-56D7-4CA2-8E8D-7EF22D0177F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{16BDA711-56D7-4CA2-8E8D-7EF22D0177F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16BDA711-56D7-4CA2-8E8D-7EF22D0177F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16BDA711-56D7-4CA2-8E8D-7EF22D0177F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCAB593C-26A2-47A8-B063-CB844924EBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCAB593C-26A2-47A8-B063-CB844924EBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCAB593C-26A2-47A8-B063-CB844924EBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCAB593C-26A2-47A8-B063-CB844924EBA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

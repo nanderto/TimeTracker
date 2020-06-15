@@ -22,8 +22,6 @@ Welcome to your new app.
     private int ErrorCode = 0;
     private IActorRuntime runtime;
     private ActorId StartUpActorId;
-    private ActorId NetworkMonitor;
-    private List<Command> commands = new List<Command>();
 
     [Inject] CoyoteRuntime CoyoteRT { get; set; }
 
@@ -31,7 +29,6 @@ Welcome to your new app.
     {
         runtime = CoyoteRT.Runtime;
         this.StartUpActorId = runtime.CreateActor(typeof(StartUpActor));
-        this.NetworkMonitor = runtime.CreateActor(typeof(NetworkMonitor));
         Console.WriteLine($"Got here OnInitializedAsync {StartUpActorId.ToString()} ZZZZZZZ");
 
         runtime.SendEvent(this.StartUpActorId, new StartupEvent(this.StartUpActorId, runtime.CreateActor(typeof(StartUpActor))));
