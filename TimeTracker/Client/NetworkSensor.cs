@@ -23,12 +23,14 @@ namespace TimeTracker.Client
 
         protected override Task OnInitializeAsync(Event initialEvent)
         {
-            this.NetworkConnected = this.PingServer().Result;
-            if (this.NetworkConnected)
-            {
-                //do something?
-                //this.Monitor<DoorSafetyMonitor>(new DoorOpenEvent(this.NetworkConnected));
-            }
+            Console.WriteLine("NetworkSensor OnInitializeAsync");
+
+           //this.NetworkConnected = this.PingServer().Result;
+            //if (this.NetworkConnected)
+            //{
+            //    //do something?
+            //    //this.Monitor<DoorSafetyMonitor>(new DoorOpenEvent(this.NetworkConnected));
+            //}
 
             return base.OnInitializeAsync(initialEvent);
         }

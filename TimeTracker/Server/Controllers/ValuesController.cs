@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Coyote.Commands;
 using Microsoft.AspNetCore.Mvc;
+using TimeTracker.Shared;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,8 +30,10 @@ namespace TimeTracker.Server.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] IncrementCountCommand value)
         {
+            Console.WriteLine(value);
+
         }
 
         // PUT api/<ValuesController>/5

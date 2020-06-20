@@ -1,5 +1,10 @@
 ﻿@page "/counter"
 
+@using Microsoft.Coyote.Actors
+@using Coyote.Commands
+@using Microsoft.Coyote
+@using TimeTracker.Shared
+
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
@@ -7,10 +12,49 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    private IActorRuntime runtime;
+
+    private ActorId NetworkSensorId;
+
+    private ActorId CommandSenderId;
+
+    [Inject] CoyoteRuntime CoyoteRT { get; set; }
+
+    [Inject] HttpClient Http { get; set; }
+
     private int currentCount = 0;
 
     private void IncrementCount()
     {
-        currentCount++;
+
+        runtime.SendEvent(this.CommandSenderId, new IncrementCountEvent(new IncrementCountCommand(1)));
+    }
+
+    public void IncrementCount(int amount)
+    {
+        currentCount = currentCount + amount;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine($"Got here OnInitializedAsync Counter.razor");
+
+        runtime = CoyoteRT.Runtime;
+
+        Console.WriteLine($"Runtime set in Counter.razor");
+        var networkSensorInitialEvent = new NetworkSensorInitialEvent(Http);
+        this.NetworkSensorId = runtime.CreateActor(typeof(Coyote.Commands.NetworkSensor), networkSensorInitialEvent);
+
+        Console.WriteLine($"NetworkSensor created");
+
+
+        this.CommandSenderId = runtime.CreateActor(typeof(Commander), new InjectHttpClientInitialEvent(Http));
+        Console.WriteLine($"CommandSender created");
+
+        runtime.SendEvent(this.NetworkSensorId, new Coyote.Commands.RegisterClientEvent(this.CommandSenderId));
+
+        Console.WriteLine($"Got here OnInitializedAsync Staartup event has been sent");
+
+        Console.WriteLine($"Got here Exiting OnInitializedAsync");
     }
 }

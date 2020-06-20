@@ -24,6 +24,7 @@ namespace TimeTracker.Server
         {
 
             services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson();
             //services.AddMvc();
         }
 

@@ -17,7 +17,7 @@ namespace TimeTracker.Server.Controllers
         [HttpGet]
         public OK Get()
         {
-            return new OK() { OKProperty = "OK" };
+            return new TimeTracker.Shared.OK() { OKProperty = "OK" };
         }
 
     }

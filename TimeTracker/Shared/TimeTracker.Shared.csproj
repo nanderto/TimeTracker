@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.Coyote" Version="1.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Coyote.Commands\Coyote.Commands.csproj" />
+  </ItemGroup>
+
 </Project>
